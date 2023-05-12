@@ -9,26 +9,26 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "tb_belonging")
 public class Belonging {
-	
+
 	@EmbeddedId
 	private BelongingPk id = new BelongingPk();
+
 	private Integer position;
-	
-	public Belonging() {
-	}
 
-	public Belonging(Game game, GameList list, Integer position) {
+	public void setGame(Game game) {
 		id.setGame(game);
-		id.setGameList(list);
-		this.position = position;
 	}
 
-	public BelongingPk getId() {
-		return id;
+	public Game getGame() {
+		return id.getGame();
 	}
 
-	public void setId(BelongingPk id) {
-		this.id = id;
+	public void setList(GameList list) {
+		id.setList(list);
+	}
+
+	public GameList getList() {
+		return id.getList();
 	}
 
 	public Integer getPosition() {
@@ -55,7 +55,4 @@ public class Belonging {
 		Belonging other = (Belonging) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-	
 }
